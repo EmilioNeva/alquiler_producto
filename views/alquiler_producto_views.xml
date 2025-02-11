@@ -1,55 +1,59 @@
+<!-- views/alquiler_producto_views.xml -->
 <odoo>
     <data>
-        <!-- Acción -->
-        <record id="action_servicio_mantenimiento" model="ir.actions.act_window">
-            <field name="name">Mantenimientos</field>
-            <field name="res_model">servicio.mantenimiento</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-        <!-- Menú -->
-        <menuitem id="menu_servicio_mantenimiento_root" name="Servicio de Mantenimiento"
-            sequence="10" />
-        <menuitem id="menu_servicio_mantenimiento" name="Mantenimientos"
-            parent="menu_servicio_mantenimiento_root" action="action_servicio_mantenimiento" />
-        <!-- Vista lista -->
-        <record id="view_servicio_mantenimiento_tree" model="ir.ui.view">
-            <field name="name">servicio.mantenimiento.tree</field>
-            <field name="model">servicio.mantenimiento</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <field name="garantia_id" />
-                    <field name="customer_id" />
-                    <field name="product_id" />
-                    <field name="fecha_solicitud" />
-                    <field name="estado" />
-                </tree>
-            </field>
-        </record>
         <!-- Vista formulario -->
-        <record id="view_servicio_mantenimiento_form" model="ir.ui.view">
-            <field name="name">servicio.mantenimiento.form</field>
-            <field name="model">servicio.mantenimiento</field>
+        <record id="view_alquiler_producto_form" model="ir.ui.view">
+            <field name="name">alquiler.producto.form</field>
+            <field name="model">alquiler.producto</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
                         <group>
-                            <field name="garantia_id" />
-                            <field name="customer_id" readonly="1" />
-                            <field name="product_id" readonly="1" />
-                        </group>
-                        <group>
-                            <field name="fecha_solicitud" />
-                            <field name="descripcion" />
-                            <field name="estado" />
-                        </group>
-                        <group>
-                            <field name="fecha_reparacion" />
-                            <field name="costo" />
-                            <field name="fecha_termino" />
+                            <group>
+                                <field name="cliente_id"/>
+                                <field name="producto_id"/>
+                                <field name="fecha_inicio"/>
+                                <field name="fecha_fin"/>
+                            </group>
+                            <group>
+                                <field name="estado"/>
+                                <field name="observaciones"/>
+                            </group>
                         </group>
                     </sheet>
                 </form>
             </field>
         </record>
+
+        <!-- Vista tree -->
+        <record id="view_alquiler_producto_tree" model="ir.ui.view">
+            <field name="name">alquiler.producto.tree</field>
+            <field name="model">alquiler.producto</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="cliente_id"/>
+                    <field name="producto_id"/>
+                    <field name="fecha_inicio"/>
+                    <field name="fecha_fin"/>
+                    <field name="estado"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Acción -->
+        <record id="action_alquiler_producto" model="ir.actions.act_window">
+            <field name="name">Alquiler de Productos</field>
+            <field name="res_model">alquiler.producto</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menú -->
+        <menuitem id="menu_alquiler_producto_root" 
+                  name="Alquiler de Productos" 
+                  sequence="10"/>
+        <menuitem id="menu_alquiler_producto" 
+                  name="Alquileres"
+                  parent="menu_alquiler_producto_root" 
+                  action="action_alquiler_producto"/>
     </data>
 </odoo>
